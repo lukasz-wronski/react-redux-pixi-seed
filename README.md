@@ -56,7 +56,6 @@ class AppComponent extends React.Component {
 
         return (
             <div className="index">
-                <div className="notice">Please edit <code>src/components/Main.js</code> to get started!</div>
                 <Stage width={config.stage.width} height={config.stage.height}>
                     <Sprite image={bunny} x={bunnyX} y={bunnyY} key="1"/>
                     <Text text="This is a pixi stage :)"
