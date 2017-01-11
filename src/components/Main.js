@@ -1,25 +1,29 @@
 require('normalize.css');
 require('styles/App.css');
 
-import React from 'react';
-import {Stage, Text, Sprite} from 'react-pixi';
-import {Point} from 'pixi.js';
+import React, { Component } from 'react';
+import { Stage, Text } from 'react-pixi';
+import { Point } from 'pixi.js'
 
 import config from 'config'
 
-import bunny from 'images/bunny.png';
+import Player from '../containers/player'
+import Items from '../containers/items'
+import KeyboardInput from './keyboard-input'
 
-class AppComponent extends React.Component {
+class AppComponent extends Component {
     render() {
-        var bunnyX = config.stage.width / 2;
-        var bunnyY = config.stage.height / 2 - 100;
-
+        const { actions } = this.props
         return (
             <div className="index">
-                <div className="notice">Please edit <code>src/components/Main.js</code> to get started!</div>
+                <KeyboardInput
+                    arrowLeft={() => { actions.playerMoved('left') }}
+                    arrowRight={() => { actions.playerMoved('right') }}
+                 />
                 <Stage width={config.stage.width} height={config.stage.height}>
-                    <Sprite image={bunny} x={bunnyX} y={bunnyY} key="1"/>
-                    <Text text="This is a pixi stage :)"
+                    <Player />
+                    <Items />
+                    <Text text={'score:' + this.props.score}
                           x={config.stage.width / 2}
                           y={config.stage.height / 2}
                           anchor={new Point(0.5,0)}
@@ -29,7 +33,5 @@ class AppComponent extends React.Component {
         );
     }
 }
-
-AppComponent.defaultProps = {};
 
 export default AppComponent;

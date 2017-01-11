@@ -1,9 +1,11 @@
-'use strict';
+const PLAYER_WIDTH = 26
 
-// Settings configured here will be merged into the final config object.
 export default {
     stage: {
-        width: 1024,
-        height: 768
+        width: 800,
+        height: 600,
+        get maxPosition() {
+            return this.width - PLAYER_WIDTH
+        }
     }
 }
